@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Clinic_Website.Models.Clinic>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+    <div class="panel panel-default" style="padding:10px;">
+        <h3 class="panel-heading">Search Result</h3>
+
+        <div class="row">
+            @foreach (var subItem in Model)
+            {
+                <div class="col-md-3 thumbnail" style="margin-left:15px; margin-bottom:15px;height:380px;">
+                    <img style="height:200px;" src="~/Uploads/@subItem.ClinicImage" />
+                    <h3>@Html.DisplayFor(modelItem => subItem.ClinicName)</h3>
+                    <h5>@Html.DisplayFor(modelItem => subItem.ClinicDescription)</h5>
+                    @Html.ActionLink("details about Clinic", "Details", new { ClinicId = subItem.Id }, new { @class = "btn btn-primary" })
+                </div>
+            }
+        </div>
+    </div>
+

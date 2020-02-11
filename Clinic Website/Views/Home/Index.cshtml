@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Clinic_Website.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron alert alert-info" style="margin-top:50px">
+    <h1>Hello</h1>
+    <p class="lead">This is a clinic mangment to doctors and patient</p>
+    <p><a href="#" class="btn btn-primary btn-lg">More Details</a></p>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="panel panel-info">
+        <h3 class="panel-heading">@Html.DisplayFor(modelItem => item.CategoryName)</h3>
+        <div class="row panel-body">
+            <h5>@Html.DisplayFor(modelItem => item.CategoryDescription)</h5> 
+
+            @foreach (var subItem in item.Clinics)
+            {
+                <div class="col-md-3 thumbnail" style="margin-left:15px; margin-bottom:15px;min-height:380px;">
+                    <img style="height:200px;" src="~/Uploads/@subItem.ClinicImage" />
+                    <h3>@Html.DisplayFor(modelItem => subItem.ClinicName)</h3>
+                    <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subItem.ClinicDescription).ToString()))</h5>
+                    @Html.ActionLink("Details about Clinic", "Details", new { ClinicId = subItem.Id }, new { @class = "btn btn-primary" })
+                </div>
+            }
+        </div>
+    </div>
+}

@@ -1,0 +1,45 @@
+﻿@model Clinic_Website.Models.ApplyForClinic
+
+@{
+    ViewBag.Title = "ApplyForClinic";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>ApplyForClinic</h2>
+
+<div>
+    <h4>ApplyForClinic</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Leave a Message
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.clinic.ClinicName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clinic.ClinicName)
+        </dd>
+
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "GetClinicsByUser")
+</p>

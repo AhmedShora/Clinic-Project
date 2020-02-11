@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Clinic_Website.Models.ClinicViewModel>
+@foreach (var gr in Model)
+{
+    <h3>@gr.ClinicName</h3>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Patient Name</th>
+            <th>Message Content</th>
+            <th>Sending Date</th>
+        </tr>
+        @foreach (var item in gr.Items)
+        {
+        <tr>
+            <td>@item.user.UserName</td>
+            <td>@item.Message</td>
+            <td>@item.ApplyDate</td>
+           
+
+        </tr>
+           
+
+        }
+    </table>
+}

@@ -1,0 +1,53 @@
+﻿@model Clinic_Website.Models.Clinic
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>clinic</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClinicName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClinicName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClinicDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClinicDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClinicImage)
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.ClinicImage)"
+                 class="thumbnail"
+                 style="width:128px; height:128px;" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Apply to Clinic", "Apply", new { id = Model.Id },new {@class= "btn btn-success" }) |
+    @Html.ActionLink("back to home", "Index")
+</p>
