@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Clinic_Website.Models;
+@using Microsoft.AspNet.Identity.EntityFramework
 
 @if (Request.IsAuthenticated)
 {
@@ -30,9 +31,20 @@
                                     <p class="text-right">
                                         <strong>@CurrentUser.UserName</strong>
                                     </p>
-                                    @if (CurrentUser.UserType == "Doctor")
+                                    @{
+                                        var userStore = new UserStore<IdentityUser>();
+                                        UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(userStore);
+
+
+                                        var rolename = userManager.GetRoles(CurrentUser.Id).FirstOrDefault().ToString();
+                                        //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
+                                    }
+                                    @*<h4>@rolename</h4>*@
+
+                                    @if (rolename == "Doctor")
                                     {
-                                        <a href="~/Home/GetClinicsByPublisher" class="btn btn-success btn-block">The Clinics you have </a>
+                                        <a href="~/Home/GetDoctorClinic" class="btn btn-success btn-block">Your Clinics</a>
+                                        <a href="~/Home/GetClinicsByPublisher" class="btn btn-success btn-block">Your Clinics with applied Patient</a>
                                         <a href="~/Clinics/Create" class="btn btn-success btn-block">Add new Clinic</a>
 
                                     }
@@ -60,7 +72,7 @@
                     </li>
                 </ul>
             </li>
-            
+
         </ul>
     }
 }

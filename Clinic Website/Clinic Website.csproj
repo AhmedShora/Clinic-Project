@@ -180,6 +180,10 @@
     <Compile Include="Migrations\202002071433359_ClinicWebsiteData.Designer.cs">
       <DependentUpon>202002071433359_ClinicWebsiteData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002151751135_removeUserType.cs" />
+    <Compile Include="Migrations\202002151751135_removeUserType.Designer.cs">
+      <DependentUpon>202002151751135_removeUserType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplyForClinic.cs" />
@@ -604,10 +608,14 @@
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Views\Home\GetDoctorClinic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002071433359_ClinicWebsiteData.resx">
       <DependentUpon>202002071433359_ClinicWebsiteData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151751135_removeUserType.resx">
+      <DependentUpon>202002151751135_removeUserType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -71,7 +71,6 @@ namespace Clinic_Website.Models
         [DisplayName("User Name")]
         public string UserName { get; set; }
 
-        //نوع الحساب دي ثالثا
         //لمرير البيانات بين الاكشن والفيو
         [Required]
         [DisplayName("Account Type")]

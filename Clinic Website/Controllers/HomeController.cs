@@ -82,6 +82,18 @@ namespace WebApplication2.Controllers
             return View(grouped.ToList());
 
         }
+        
+         //my addition Function
+         [Authorize]
+         public ActionResult GetDoctorClinic()
+         {
+            var UserID = User.Identity.GetUserId();
+            var Clinics = from app in DB.Clinics
+                          where app.UserId == UserID
+                          select app;
+            return View(Clinics.ToList());
+         }
+            
         [Authorize]
         public ActionResult GetClinicsByUser()
         {

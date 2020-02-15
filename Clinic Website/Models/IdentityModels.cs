@@ -10,7 +10,7 @@ namespace Clinic_Website.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public string UserType { get; set; }
+       // public string UserType { get; set; }
         public virtual ICollection< Clinic> Clinics { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

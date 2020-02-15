@@ -105,3 +105,4 @@ C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.csproj.CopyComplete
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.dll
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.pdb
+C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic_Website.Migrations.removeUserType.resources
