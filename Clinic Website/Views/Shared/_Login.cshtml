@@ -31,19 +31,21 @@
                                     <p class="text-right">
                                         <strong>@CurrentUser.UserName</strong>
                                     </p>
-                                    @{
+                                    @*@{
                                         var userStore = new UserStore<IdentityUser>();
                                         UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(userStore);
 
 
                                         var rolename = userManager.GetRoles(CurrentUser.Id).FirstOrDefault().ToString();
                                         //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
-                                    }
+                                    }*@
                                     @*<h4>@rolename</h4>*@
 
-                                    @if (rolename == "Doctor")
+                                    @if (User.IsInRole("Doctor"))
                                     {
+                                        //return the doctor clinics
                                         <a href="~/Home/GetDoctorClinic" class="btn btn-success btn-block">Your Clinics</a>
+                                        //return the clinics with it's applied patient
                                         <a href="~/Home/GetClinicsByPublisher" class="btn btn-success btn-block">Your Clinics with applied Patient</a>
                                         <a href="~/Clinics/Create" class="btn btn-success btn-block">Add new Clinic</a>
 
