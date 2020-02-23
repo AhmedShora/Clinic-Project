@@ -1,9 +1,8 @@
 ﻿
 
 .navbar-default {
-    background-color: #56bf7e;
+    background-color: #0099e6;
     border-color: #e7e7e7;
-    
 }
 .navbar-default .navbar-nav > li > a {
     color: #fcf8e3;
@@ -15,7 +14,7 @@
     padding-top: 10px;
 }
 .myfooter {
-    background-color: #1e9a64;
+    background-color: #0099e6;
     padding-top: 5px;
     text-align: justify;
 }
@@ -29,7 +28,7 @@
     margin-top:20px;
 }
 .subfooter {
-    background-color:#56bf7e;
+    background-color: #1ab2ff;
     color: white;
     padding: 10px;
     text-align: center;
@@ -55,11 +54,16 @@ padding-top:70px;
 }
 .navbar-user {
 padding:10px;
-padding-bottom=0px;
+/*padding-bottom:0px;*/
 width:330px;
 }
 @media (min-width: 992px) {
     .col-md-3 {
         width: 23%;
     }
+}
+#clinicLogo {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
 }

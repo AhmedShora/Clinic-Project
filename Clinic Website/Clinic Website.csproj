@@ -200,6 +200,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\unnamed.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -582,7 +583,7 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\DetailsOfClinics.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
-    <Content Include="Views\Home\GetClinicsByPublisher.cshtml" />
+    <Content Include="Views\Home\GetPatientsforClinics.cshtml" />
     <Content Include="Views\Home\GetClinicsByUser.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />

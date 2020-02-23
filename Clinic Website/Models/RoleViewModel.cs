@@ -10,5 +10,5 @@ namespace Clinic_Website.Models
         public string Id { get; set; }
         public string Name { get; set; }
 
-    }
+    }//not important model, will be deleted
 }

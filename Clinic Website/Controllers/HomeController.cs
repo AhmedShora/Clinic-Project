@@ -61,7 +61,7 @@ namespace WebApplication2.Controllers
             }
         }
         [Authorize]
-        public ActionResult GetClinicsByPublisher()
+        public ActionResult GetPatientsforClinics()
         {
             var UserID = User.Identity.GetUserId();
 
@@ -83,11 +83,12 @@ namespace WebApplication2.Controllers
 
         }
         
-         //my addition Function
+         //new action
          [Authorize]
          public ActionResult GetDoctorClinic()
          {
             var UserID = User.Identity.GetUserId();
+            //query type
             var Clinics = from app in DB.Clinics
                           where app.UserId == UserID
                           select app;
@@ -98,6 +99,7 @@ namespace WebApplication2.Controllers
         public ActionResult GetClinicsByUser()
         {
             var UserId = User.Identity.GetUserId();
+            //non query type
             var Clinics = DB.ApplyForClinics.Where(a => a.UserId == UserId);
             return View(Clinics.ToList());
         }
