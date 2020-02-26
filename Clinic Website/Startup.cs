@@ -33,6 +33,12 @@ namespace Clinic_Website
                     userManger.AddToRoles(user.Id, "Admins");
                 }
             }
+            if (!roleManger.RoleExists("Doctor") && !roleManger.RoleExists("Patient")) {
+                role.Name = "Doctor";
+                roleManger.Create(role);
+                role.Name = "Patient";
+                roleManger.Create(role);
+            }
         }
     }
 }
