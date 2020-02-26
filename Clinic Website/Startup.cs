@@ -24,6 +24,7 @@ namespace Clinic_Website
             {
                 role.Name = "Admins";
                 roleManger.Create(role);
+
                 ApplicationUser user = new ApplicationUser();
                 user.UserName = "Ahmed";
                 user.Email = "ahmedalshora53@gmail.com";
@@ -33,9 +34,11 @@ namespace Clinic_Website
                     userManger.AddToRoles(user.Id, "Admins");
                 }
             }
-            if (!roleManger.RoleExists("Doctor") && !roleManger.RoleExists("Patient")) {
+            if (!roleManger.RoleExists("Doctor")) {
                 role.Name = "Doctor";
-                roleManger.Create(role);
+            }
+            if (!roleManger.RoleExists("Patient"))
+            {
                 role.Name = "Patient";
                 roleManger.Create(role);
             }
