@@ -189,7 +189,6 @@ namespace WebApplication2.Controllers
             mail.To.Add(new MailAddress("ahmedalshora53@gmail.com"));
             mail.Subject = contact.Subject;
             mail.IsBodyHtml = true;
-
             string body = "Sender Name" + contact.Name + "<br>" +
                         "Sender Email" + contact.Email + "<br>" +
                         "Message Title" + contact.Subject + "<br>" +
