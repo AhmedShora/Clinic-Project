@@ -32,13 +32,13 @@
                                         <strong>@CurrentUser.UserName</strong>
                                     </p>
                                     @*@{
-                                        var userStore = new UserStore<IdentityUser>();
-                                        UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(userStore);
+            var userStore = new UserStore<IdentityUser>();
+            UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(userStore);
 
 
-                                        var rolename = userManager.GetRoles(CurrentUser.Id).FirstOrDefault().ToString();
-                                        //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
-                                    }*@
+            var rolename = userManager.GetRoles(CurrentUser.Id).FirstOrDefault().ToString();
+            //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
+        }*@
                                     @*<h4>@rolename</h4>*@
 
                                     @if (User.IsInRole("Doctor"))
@@ -50,9 +50,15 @@
                                         <a href="~/Clinics/Create" class="btn btn-success btn-block">Add new Clinic</a>
 
                                     }
-                                    else
+                                    else if (User.IsInRole("Patient"))
                                     {
                                         <a href="~/Home/GetClinicsByUser" class="btn btn-success btn-block">The Clinics you have applied</a>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="~/Roles/Create" class="btn btn-success btn-block">Add role</a>
+                                        <a href="~/Categories/Create" class="btn btn-success btn-block">Add Category</a>
 
                                     }
                                     <a href="~/Account/EditProfile" class="btn btn-primary  btn-block">Edit Account</a>
