@@ -22,6 +22,16 @@ namespace Clinic_Website
             IdentityRole role = new IdentityRole();
             if (!roleManger.RoleExists("Admins"))
             {
+                if (!roleManger.RoleExists("Doctor"))
+                {
+                    role.Name = "Doctor";
+                }
+                if (!roleManger.RoleExists("Patient"))
+                {
+                    role.Name = "Patient";
+                    roleManger.Create(role);
+                }
+
                 role.Name = "Admins";
                 roleManger.Create(role);
 
@@ -34,14 +44,7 @@ namespace Clinic_Website
                     userManger.AddToRoles(user.Id, "Admins");
                 }
             }
-            if (!roleManger.RoleExists("Doctor")) {
-                role.Name = "Doctor";
-            }
-            if (!roleManger.RoleExists("Patient"))
-            {
-                role.Name = "Patient";
-                roleManger.Create(role);
-            }
+           
         }
     }
 }

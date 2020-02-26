@@ -31,15 +31,17 @@
                                     <p class="text-right">
                                         <strong>@CurrentUser.UserName</strong>
                                     </p>
-                                    @*@{
-            var userStore = new UserStore<IdentityUser>();
-            UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(userStore);
+                                    @*
+                                        @{
+                                        var userStore = new UserStore<IdentityUser>();
+                                        UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(userStore);
 
 
-            var rolename = userManager.GetRoles(CurrentUser.Id).FirstOrDefault().ToString();
-            //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
-        }*@
-                                    @*<h4>@rolename</h4>*@
+                                        var rolename = userManager.GetRoles(CurrentUser.Id).FirstOrDefault().ToString();
+                                        //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
+                                        }
+                                    *@
+                                 
 
                                     @if (User.IsInRole("Doctor"))
                                     {
@@ -50,10 +52,9 @@
                                         <a href="~/Clinics/Create" class="btn btn-success btn-block">Add new Clinic</a>
 
                                     }
-                                    else if (User.IsInRole("Patient"))
+                                    else if(User.IsInRole("Patient"))
                                     {
                                         <a href="~/Home/GetClinicsByUser" class="btn btn-success btn-block">The Clinics you have applied</a>
-
                                     }
                                     else
                                     {
