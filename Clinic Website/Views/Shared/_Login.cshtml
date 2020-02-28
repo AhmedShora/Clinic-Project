@@ -41,7 +41,7 @@
                                         //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
                                         }
                                     *@
-                                 
+
 
                                     @if (User.IsInRole("Doctor"))
                                     {
@@ -50,9 +50,8 @@
                                         //return the clinics with it's applied patient
                                         <a href="~/Home/GetPatientsforClinics" class="btn btn-success btn-block">Your Clinics with applied Patient</a>
                                         <a href="~/Clinics/Create" class="btn btn-success btn-block">Add new Clinic</a>
-
                                     }
-                                    else if(User.IsInRole("Patient"))
+                                    else if (User.IsInRole("Patient"))
                                     {
                                         <a href="~/Home/GetClinicsByUser" class="btn btn-success btn-block">The Clinics you have applied</a>
                                     }
@@ -60,8 +59,11 @@
                                     {
                                         <a href="~/Roles/Create" class="btn btn-success btn-block">Add role</a>
                                         <a href="~/Categories/Create" class="btn btn-success btn-block">Add Category</a>
-
+                                        <a href="~/Home/GetDoctorsByAdmin" class="btn btn-success btn-block">All Doctors</a>
+                                        <a href="~/Home/GetPatientsByAdmin" class="btn btn-success btn-block">All Patient</a>
                                     }
+
+
                                     <a href="~/Account/EditProfile" class="btn btn-primary  btn-block">Edit Account</a>
                                 </div>
                             </div>

@@ -1,5 +1,6 @@
 ﻿using Clinic_Website.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -83,27 +84,6 @@ namespace WebApplication2.Controllers
 
         }
         
-         //new action
-         [Authorize]
-         public ActionResult GetDoctorClinic()
-         {
-            var UserID = User.Identity.GetUserId();
-            //query type
-            var Clinics = from app in DB.Clinics
-                          where app.UserId == UserID
-                          select app;
-            return View(Clinics.ToList());
-         }
-            
-        [Authorize]
-        public ActionResult GetClinicsByUser()
-        {
-            var UserId = User.Identity.GetUserId();
-            //non query type
-            var Clinics = DB.ApplyForClinics.Where(a => a.UserId == UserId);
-            return View(Clinics.ToList());
-        }
-
         [Authorize]
         public ActionResult DetailsOfClinics(int Id)
         {
@@ -114,7 +94,7 @@ namespace WebApplication2.Controllers
             }
             return View(clinic);
         }
-        // GET: Roles/Edit/5
+
         public ActionResult Edit(int id)
         {
             var clinic = DB.ApplyForClinics.Find(id);
@@ -125,7 +105,6 @@ namespace WebApplication2.Controllers
             return View(clinic);
         }
 
-        // POST: Roles/Edit/5
         [HttpPost]
         public ActionResult Edit(ApplyForClinic clinic)
         {
@@ -139,7 +118,6 @@ namespace WebApplication2.Controllers
             return View(clinic);
         }
 
-        // GET: Roles/Delete/5
         public ActionResult Delete(int id)
         {
             var clinic = DB.ApplyForClinics.Find(id);
@@ -150,7 +128,6 @@ namespace WebApplication2.Controllers
             return View(clinic);
         }
 
-        // POST: Roles/Delete/5
         [HttpPost]
         public ActionResult Delete(ApplyForClinic clinic)
         {
@@ -173,12 +150,53 @@ namespace WebApplication2.Controllers
 
             return View();
         }
+        //new actions
+        [Authorize]
+        public ActionResult GetDoctorClinic()
+        {
+            var UserID = User.Identity.GetUserId();
+            //query type
+            var Clinics = from app in DB.Clinics
+                          where app.UserId == UserID
+                          select app;
+            return View(Clinics.ToList());
+        }
+
+        [Authorize]
+        public ActionResult GetClinicsByUser()
+        {
+            var UserId = User.Identity.GetUserId();
+            //non query type
+            var Clinics = DB.ApplyForClinics.Where(a => a.UserId == UserId);
+            return View(Clinics.ToList());
+        }
+
+        //separate doctors and patients from users
+        [Authorize]
+        public ActionResult GetDoctorsByAdmin()
+        {
+            //   var AllDoctors = DB.Users;
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(DB));
+            var role = roleManager.FindByName("Doctor").Users.First();
+            var usersInRoleDoctor = DB.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
+            return View(usersInRoleDoctor);
+        }
+        [Authorize]
+        public ActionResult GetPatientsByAdmin()
+        {
+            //   var AllDoctors = DB.Users;
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(DB));
+            var role = roleManager.FindByName("Patient").Users.First();
+            var usersInRolePatient = DB.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
+            return View(usersInRolePatient);
+        }
         [HttpGet]
         public ActionResult Contact()
         {
 
             return View();
         }
+
         [HttpPost]
         public ActionResult Contact(ContactModel contact)
         {
