@@ -34,7 +34,9 @@
     text-align: center;
 }
 body {
-padding-top:70px;
+    padding-top: 70px;
+    background: url('bg.jpg');
+    background-size: cover;
 }
 #searchName {
     width: 160px;
@@ -67,3 +69,79 @@ width:330px;
     width: 50px;
     border-radius: 10px;
 }
+#bodyDiv {
+    min-height: 600px;
+}
+/*start Login page*/
+#loginForm {
+    margin:50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 340px;
+    /*height: 500px;*/
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, .8);
+}
+    #loginForm h2 {
+        margin: 0 0 0 20px;
+        padding: 0;
+        color: #0099e6;
+        text-align: center;
+    }
+#loginForm p {
+margin: 0;
+padding: 0;
+font-weight: bold;
+color: #fff;
+}
+
+#loginForm input {
+width: 100%;
+margin-bottom: 20px;
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    height: 40px;
+}
+    #loginForm input[type="submit"] {
+        border: none;
+        outline: none;
+        color: #262626;
+        background: #0099e6;
+        cursor: pointer;
+        border-radius: 20px;
+        height: 35px;
+        font-size: 16px;
+    }
+        #loginForm input[type="submit"]:hover {
+            color: #262626;
+            background: #18749F;
+        }
+#loginForm a {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+    #loginForm a:hover {
+        color: #0099e6;
+    }
+.av {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(-100px/2);
+    left: calc(50% - 50px);
+}
+/*End login page*/

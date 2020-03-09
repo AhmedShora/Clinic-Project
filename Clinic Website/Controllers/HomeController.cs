@@ -33,6 +33,7 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Apply(string Message)
         {
@@ -201,7 +202,6 @@ namespace WebApplication2.Controllers
         public ActionResult Contact(ContactModel contact)
         {
             var mail = new MailMessage();
-            //the  person who will send the email
             var loginInfo = new NetworkCredential("ahmedalshora53@gmail.com", "Password");
             mail.From = new MailAddress(contact.Email);
             mail.To.Add(new MailAddress("ahmedalshora53@gmail.com"));

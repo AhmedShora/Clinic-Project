@@ -31,10 +31,8 @@ namespace Clinic_Website
                     role.Name = "Patient";
                     roleManger.Create(role);
                 }
-
                 role.Name = "Admins";
                 roleManger.Create(role);
-
                 ApplicationUser user = new ApplicationUser();
                 user.UserName = "Ahmed";
                 user.Email = "ahmedalshora53@gmail.com";

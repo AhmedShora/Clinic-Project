@@ -3,10 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet"  type="text/css" />
-
 </head>
 <body>
     <div>
@@ -19,11 +17,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                     <a href="~/Home" class="navbar-brand">
                         <img id="clinicLogo" src="~/Content/unnamed.jpg"/>
                     </a>
                 </div>
+
                 <div id="navbardiv" class="navbar-collapse collapse">
                     <ul id="navbar" class="nav navbar-nav">
                         <li>
@@ -32,7 +30,6 @@
                                 Main Page
                             </a>
                         </li>
-
                         <li>
                             <a href="~/Home/about">
                                 <i class="glyphicon glyphicon-info-sign"></i>
@@ -55,14 +52,14 @@
                     </ul>
                     <!--Partial Login-->
                     @Html.Partial("_Login")
-
                 </div>
+
             </div>
         </nav>
 
         <!--body-->
         <div class="container">
-            <div class="row" style="min-height:450px">
+            <div class="row" id="bodyDiv">
                 @RenderBody()
             </div>
         </div>
