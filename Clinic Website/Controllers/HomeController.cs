@@ -35,6 +35,8 @@ namespace WebApplication2.Controllers
         }
 
         [HttpPost]
+        //بيقدم في العيادة الاكشن دا بستخدمه للتقديم ع العيادة 
+        // بيبعلتي اليايدي بتاع اليوزر الحالي والايدي بتاع العياده اللي هو واقف فيها 
         public ActionResult Apply(string Message)
         {
             var UserId = User.Identity.GetUserId();
@@ -81,6 +83,7 @@ namespace WebApplication2.Controllers
                               ClinicName = g.Key,
                               Items = g
                           };
+
             return View(grouped.ToList());
 
         }
@@ -164,6 +167,8 @@ namespace WebApplication2.Controllers
         }
 
         [Authorize]
+        //بترجع العياداتات اللي اليوزر المريض قدم فيها 
+
         public ActionResult GetClinicsByUser()
         {
             var UserId = User.Identity.GetUserId();

@@ -164,7 +164,8 @@ namespace Clinic_Website.Controllers
                     await UserManager.AddToRoleAsync(user.Id,model.UserType);
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.UserType = new SelectList(db.Roles, "Name", "NAME");
+                //ViewBag.UserType = new SelectList(db.Roles, "Name", "NAME");
+                ViewBag.UserType = db.Roles.ToList();
                 AddErrors(result);
             }
             return View(model);

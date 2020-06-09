@@ -36,6 +36,7 @@ namespace Clinic_Website
                 ApplicationUser user = new ApplicationUser();
                 user.UserName = "Ahmed";
                 user.Email = "ahmedalshora53@gmail.com";
+
                 var Check = userManger.Create(user, "Aaaa.12345");
                 if (Check.Succeeded)
                 {

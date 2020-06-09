@@ -64,7 +64,7 @@ namespace Clinic_Website.Controllers
                 var UserId = User.Identity.GetUserId();
                 db.Clinics.Add(clinic);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Home","Index");
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", clinic.CategoryId);

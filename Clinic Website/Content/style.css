@@ -35,8 +35,7 @@
 }
 body {
     padding-top: 70px;
-    background: url('bg.jpg');
-    background-size: cover;
+  
 }
 #searchName {
     width: 160px;
@@ -123,19 +122,19 @@ margin-bottom: 20px;
         height: 35px;
         font-size: 16px;
     }
-        #loginForm input[type="submit"]:hover {
-            color: #262626;
-            background: #18749F;
-        }
+#loginForm input[type="submit"]:hover {
+    color: #262626;
+    background: #18749F;
+}
 #loginForm a {
     color: white;
     font-size: 14px;
     font-weight: bold;
     text-decoration: none;
 }
-    #loginForm a:hover {
-        color: #0099e6;
-    }
+#loginForm a:hover {
+    color: #0099e6;
+}
 .av {
     height: 100px;
     width: 100px;
@@ -143,5 +142,9 @@ margin-bottom: 20px;
     position: absolute;
     top: calc(-100px/2);
     left: calc(50% - 50px);
+}
+.BackgroundPhoto {
+    background-image: url('bg.jpg');
+    background-size: cover;
 }
 /*End login page*/
