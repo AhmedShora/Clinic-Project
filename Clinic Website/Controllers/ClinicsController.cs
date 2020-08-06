@@ -50,21 +50,18 @@ namespace Clinic_Website.Controllers
         {
             if (ModelState.IsValid)
             {
-               
                 if (upload != null)
                 {
-                    //دول تلات أوامر للحفظ
+                    //to save
                     string path = Path.Combine(Server.MapPath("~/Uploads"),upload.FileName);
                     upload.SaveAs(path);
                     clinic.ClinicImage = upload.FileName;
                     clinic.UserId = User.Identity.GetUserId();
-                    
                 }
-
                 var UserId = User.Identity.GetUserId();
                 db.Clinics.Add(clinic);
                 db.SaveChanges();
-                return RedirectToAction("Home","Index");
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", clinic.CategoryId);

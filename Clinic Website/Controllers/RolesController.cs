@@ -12,6 +12,7 @@ namespace Clinic_Website.Controllers
     [Authorize(Roles = "Admins")]
     public class RolesController : Controller
     {
+        //CRUD Actions
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Roles
         public ActionResult Index()

@@ -14,7 +14,7 @@
     <div class="panel panel-info">
         <h3 class="panel-heading">@Html.DisplayFor(modelItem => item.CategoryName)</h3>
         <div class="row panel-body">
-            <h5>@Html.DisplayFor(modelItem => item.CategoryDescription)</h5> 
+            <h4 class="panel panel-group" style="margin-left:10px;">@Html.DisplayFor(modelItem => item.CategoryDescription)</h4> 
 
             @foreach (var subItem in item.Clinics)
             {

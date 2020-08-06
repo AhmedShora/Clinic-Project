@@ -615,6 +615,7 @@
     <Content Include="Views\Home\GetDoctorClinic.cshtml" />
     <Content Include="Views\Home\GetDoctorsByAdmin.cshtml" />
     <Content Include="Views\Home\GetPatientsByAdmin.cshtml" />
+    <Content Include="Views\Account\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002071433359_ClinicWebsiteData.resx">

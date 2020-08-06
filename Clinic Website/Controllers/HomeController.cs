@@ -10,7 +10,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebApplication2.Controllers
+namespace Clinic_Website.Controllers
 {
     public class HomeController : Controller
     {
@@ -34,9 +34,9 @@ namespace WebApplication2.Controllers
             return View();
         }
 
+      
         [HttpPost]
-        //بيقدم في العيادة الاكشن دا بستخدمه للتقديم ع العيادة 
-        // بيبعلتي اليايدي بتاع اليوزر الحالي والايدي بتاع العياده اللي هو واقف فيها 
+        
         public ActionResult Apply(string Message)
         {
             var UserId = User.Identity.GetUserId();

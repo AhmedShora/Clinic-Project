@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using System.Configuration;
 
 [assembly: OwinStartupAttribute(typeof(Clinic_Website.Startup))]
 namespace Clinic_Website
@@ -15,6 +16,7 @@ namespace Clinic_Website
             ConfigureAuth(app);
             CreateDefaultRolesAndUsers();
         }
+
         public void CreateDefaultRolesAndUsers()
         {
             var roleManger = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
@@ -35,9 +37,8 @@ namespace Clinic_Website
                 roleManger.Create(role);
                 ApplicationUser user = new ApplicationUser();
                 user.UserName = "Ahmed";
-                user.Email = "ahmedalshora53@gmail.com";
-
-                var Check = userManger.Create(user, "Aaaa.12345");
+                user.Email = ConfigurationManager.AppSettings["Email"];
+                var Check = userManger.Create(user, ConfigurationManager.AppSettings["AdminPassword"]);
                 if (Check.Succeeded)
                 {
                     userManger.AddToRoles(user.Id, "Admins");

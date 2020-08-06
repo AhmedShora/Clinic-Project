@@ -98,11 +98,11 @@ C:\Users\hp\source\repos\Clinic Website\Clinic Website\bin\Microsoft.Owin.Securi
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic_Website.Migrations.ClinicWebsiteData.resources
+C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic_Website.Migrations.removeUserType.resources
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.csproj.GenerateResource.cache
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.csproj.CoreCompileInputs.cache
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.csproj.CopyComplete
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.dll
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.pdb
-C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic_Website.Migrations.removeUserType.resources
+C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.csprojAssemblyReference.cache

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Clinic_Website.Models;
+using System.Net;
 
 namespace Clinic_Website.Controllers
 {
@@ -24,7 +25,7 @@ namespace Clinic_Website.Controllers
             db = new ApplicationDbContext();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +37,9 @@ namespace Clinic_Website.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -56,10 +57,16 @@ namespace Clinic_Website.Controllers
 
         //
         // GET: /Account/Login
+        //[AllowAnonymous]
+        //public ActionResult Login(string returnUrl)
+        //{
+        //    ViewBag.ReturnUrl = returnUrl;
+        //    return View();
+        //}
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
-            ViewBag.ReturnUrl = returnUrl;
+            //  ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -73,6 +80,17 @@ namespace Clinic_Website.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
+            }
+
+            // Require the user to have a confirmed email before they can log on.
+            var user = await UserManager.FindByNameAsync(model.UserName);
+            if (user != null)
+            {
+                if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    // ViewBag.errorMessage = "You must have a confirmed email to log on.";
+                    return View("Info");
+                }
             }
 
             // This doesn't count login failures towards account lockout
@@ -122,7 +140,7 @@ namespace Clinic_Website.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -141,7 +159,7 @@ namespace Clinic_Website.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.UserType = new SelectList(db.Roles.Where(ww=>!ww.Name.Contains("Admins")).ToList(), "Name", "NAME");
+            ViewBag.UserType = new SelectList(db.Roles.Where(ww => !ww.Name.Contains("Admins")).ToList(), "Name", "NAME");
             return View();
         }
 
@@ -154,26 +172,39 @@ namespace Clinic_Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                //ViewBag.UserType = new SelectList(db.Roles, "Name", "NAME");
+
+                //ViewBag.UserType = new SelectList(db.Roles.Where(ww=>!ww.Name.Contains("Admins")).ToList(), "Name", "NAME");
+                ViewBag.UserType = new SelectList(db.Roles.Where(ww => !ww.Name.Contains("Admins")), "Name", "NAME");
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 // UserType = model.UserType
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    await UserManager.AddToRoleAsync(user.Id,model.UserType);
-                    return RedirectToAction("Index", "Home");
+                    //  Comment the following line to prevent log in until the user is confirmed.
+                    //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await UserManager.AddToRoleAsync(user.Id, model.UserType);
+
+                    //var autheticationManager = HttpContext.GetOwinContext().Authentication;
+                    //autheticationManager.SignOut();
+
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account",  callbackUrl );
+
+                    // return RedirectToAction("Index", "Home");
+                    return View("Info");
                 }
-                //ViewBag.UserType = new SelectList(db.Roles, "Name", "NAME");
-                ViewBag.UserType = db.Roles.ToList();
+                ViewBag.UserType = new SelectList(db.Roles.Where(ww => !ww.Name.Contains("Admins")), "Name", "NAME");
                 AddErrors(result);
             }
+            ViewBag.UserType = new SelectList(db.Roles.Where(ww => !ww.Name.Contains("Admins")), "Name", "NAME");
+
             return View(model);
         }
         public ActionResult EditProfile()
         {
             var UserId = User.Identity.GetUserId();
-            var user = db.Users.Where(aa=>aa.Id==UserId).SingleOrDefault();
+            var user = db.Users.Where(aa => aa.Id == UserId).SingleOrDefault();
             EditProfileViewModel profile = new EditProfileViewModel();
             profile.UserName = user.UserName;
             profile.Email = user.Email;
@@ -183,7 +214,7 @@ namespace Clinic_Website.Controllers
         public ActionResult EditProfile(EditProfileViewModel profile)
         {
             var UserId = User.Identity.GetUserId();
-            var CurrentUser = db.Users.Where(aa=>aa.Id==UserId).SingleOrDefault();
+            var CurrentUser = db.Users.Where(aa => aa.Id == UserId).SingleOrDefault();
             if (!UserManager.CheckPassword(CurrentUser, profile.CurrentPassword))
             {
                 ViewBag.Message = "Current password is not correct";

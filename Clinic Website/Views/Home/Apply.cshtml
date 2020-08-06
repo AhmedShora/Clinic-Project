@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -14,14 +13,14 @@
         <h4>ApplyForClinic</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="alert alert-info">
-            @{
-                if (ViewBag.Result != null)
-                {
-                    <h3>@ViewBag.Result</h3>
-                }
-            }
-        </div>
+
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-info">
+                <h3>@ViewBag.Result</h3>
+            </div>
+        }
+
         <div class="form-group">
             @Html.Label("Message", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -29,7 +28,6 @@
                 @Html.ValidationMessage("Message", "", new { @class = "text-danger" })
             </div>
         </div>
-
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
