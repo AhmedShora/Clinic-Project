@@ -189,7 +189,7 @@ namespace Clinic_Website.Controllers
 
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account",  callbackUrl );
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
 
                     // return RedirectToAction("Index", "Home");
                     return View("Info");
@@ -215,21 +215,37 @@ namespace Clinic_Website.Controllers
         {
             var UserId = User.Identity.GetUserId();
             var CurrentUser = db.Users.Where(aa => aa.Id == UserId).SingleOrDefault();
-            if (!UserManager.CheckPassword(CurrentUser, profile.CurrentPassword))
+            if (profile.CurrentPassword == null || profile.NewPassword == null || profile.ConfirmPassword == null)
             {
-                ViewBag.Message = "Current password is not correct";
+                ViewBag.Message = "Current or New or Confirm password Cannot be null";
 
             }
             else
             {
-                var newPasswordHash = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
-                CurrentUser.UserName = profile.UserName;
-                CurrentUser.Email = profile.Email;
-                CurrentUser.PasswordHash = newPasswordHash;
-                db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                ViewBag.Message = "Successfully Edit";
+                if (!UserManager.CheckPassword(CurrentUser, profile.CurrentPassword))
+                {
+                    ViewBag.Message = "Current password is not correct";
+
+                }
+                else
+                {
+                    if (profile.NewPassword != profile.ConfirmPassword)
+                    {
+                        ViewBag.Message = "Current password does not match ConfirmPassword";
+                    }
+                    else
+                    {
+                        var newPasswordHash = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+                        CurrentUser.UserName = profile.UserName;
+                        CurrentUser.Email = profile.Email;
+                        CurrentUser.PasswordHash = newPasswordHash;
+                        db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        ViewBag.Message = "Successfully Edit";
+                    }
+                }
             }
+
             return View(profile);
         }
         //
@@ -463,6 +479,25 @@ namespace Clinic_Website.Controllers
             return View();
         }
 
+        //public ActionResult Info(int id)
+        //{
+        //    var clinic = DB.ApplyForClinics.Find(id);
+
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult Info()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        clinic.ApplyDate = DateTime.Now;
+        //        DB.Entry(clinic).State = EntityState.Modified;
+        //        DB.SaveChanges();
+        //        return RedirectToAction("GetClinicsByUser");
+        //    }
+        //    return View(clinic);
+        //}
         protected override void Dispose(bool disposing)
         {
             if (disposing)

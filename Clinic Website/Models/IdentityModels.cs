@@ -12,6 +12,9 @@ namespace Clinic_Website.Models
     {
        // public string UserType { get; set; }
         public virtual ICollection< Clinic> Clinics { get; set; }
+        public BloodType BloodType { get; set; }
+        public Gender Gender { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

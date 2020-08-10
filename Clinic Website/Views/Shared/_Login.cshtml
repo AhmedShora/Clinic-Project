@@ -32,14 +32,14 @@
                                         <strong>@CurrentUser.UserName</strong>
                                     </p>
                                     @*
-                                        @{
-                                        var userStore = new UserStore<IdentityUser>();
-                                        UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(userStore);
+        @{
+        var userStore = new UserStore<IdentityUser>();
+        UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(userStore);
 
 
-                                        var rolename = userManager.GetRoles(CurrentUser.Id).FirstOrDefault().ToString();
-                                        //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
-                                        }
+        var rolename = userManager.GetRoles(CurrentUser.Id).FirstOrDefault().ToString();
+        //UserManager<ApplicationUser>.GetRoles(CurrentUser.Id.ToString()).FirstOrDefault();
+        }
                                     *@
 
 
@@ -65,6 +65,8 @@
 
 
                                     <a href="~/Account/EditProfile" class="btn btn-primary  btn-block">Edit Account</a>
+                                    <a href="~/Account/Info" class="btn btn-primary  btn-block">Add Info</a>
+
                                 </div>
                             </div>
                         </div>

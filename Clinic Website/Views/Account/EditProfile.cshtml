@@ -1,19 +1,20 @@
 ﻿@model Clinic_Website.Models.EditProfileViewModel
-
 @{
     ViewBag.Title = "EditProfile";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
 <h2>EditProfile</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <div>
-            <h3>@ViewBag.Message</h3>
+            @if (ViewBag.Message != null)
+            {
+                <h3 class="panel alert-danger">@ViewBag.Message</h3>
+            }
         </div>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -68,5 +69,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Home")
 </div>

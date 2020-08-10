@@ -74,7 +74,7 @@ namespace Clinic_Website.Models
         //لمرير البيانات بين الاكشن والفيو
         [Required]
         [DisplayName("Account Type")]
-        public string UserType { get; set; }        
+        public string UserType { get; set; }
 
         [Required]
         [EmailAddress]
@@ -82,7 +82,8 @@ namespace Clinic_Website.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(18, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Please enter a Valid password at least one capital letter")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -92,15 +93,16 @@ namespace Clinic_Website.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
     }
     public class EditProfileViewModel
     {
         public int Id { get; set; }
+
         [Required]
         [DisplayName("User Name")]
         public string UserName { get; set; }
-
-        
 
         [Required]
         [EmailAddress]
@@ -109,6 +111,7 @@ namespace Clinic_Website.Models
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Please enter a Valid password at least one capital letter")]
         [DataType(DataType.Password)]
         [Display(Name = "Current Password")]
         public string CurrentPassword { get; set; }
@@ -116,11 +119,14 @@ namespace Clinic_Website.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Please enter a Valid password at least one capital letter")]
         [Display(Name = "New Password")]
         public string NewPassword { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm New password")]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "Please enter a Valid password at least one capital letter")]
         [Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
