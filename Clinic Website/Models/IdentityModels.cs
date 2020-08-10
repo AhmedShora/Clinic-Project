@@ -42,6 +42,10 @@ namespace Clinic_Website.Models
 
         public System.Data.Entity.DbSet<Clinic_Website.Models.ApplyForClinic> ApplyForClinics { get; set; }
 
+       // public System.Data.Entity.DbSet<Clinic_Website.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+
+
 
         //public System.Data.Entity.DbSet<Clinic_Website.Models.ApplicationUser> ApplicationUsers { get; set; }
     }

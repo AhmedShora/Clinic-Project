@@ -10,7 +10,14 @@ namespace Clinic_Website.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+    //a view model
+    public class EditInfo
+    {
+        public BloodType BloodType { get; set; }
+        public Gender Gender { get; set; }
 
+
+    }
     public class ExternalLoginListViewModel
     {
         public string ReturnUrl { get; set; }

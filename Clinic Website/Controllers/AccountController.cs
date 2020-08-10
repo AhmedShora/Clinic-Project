@@ -63,6 +63,37 @@ namespace Clinic_Website.Controllers
         //    ViewBag.ReturnUrl = returnUrl;
         //    return View();
         //}
+
+        [Authorize]
+        public ActionResult ProfileInformation()
+        {
+            var UserID = User.Identity.GetUserId();
+            var user = db.Users.Find(UserID);
+            return View(user);
+        }
+
+        [Authorize]
+        public ActionResult EditInfo()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult EditInfo( EditInfo editInfo)
+        {
+             if (ModelState.IsValid)
+            {
+                var UserID = User.Identity.GetUserId();
+                var user=db.Users.Find(UserID);
+                user.BloodType = editInfo.BloodType;
+                user.Gender = editInfo.Gender;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            return View(editInfo);
+        }
+
         [AllowAnonymous]
         public ActionResult Login()
         {
