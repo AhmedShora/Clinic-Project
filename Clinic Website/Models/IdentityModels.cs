@@ -14,6 +14,8 @@ namespace Clinic_Website.Models
         public virtual ICollection< Clinic> Clinics { get; set; }
         public BloodType BloodType { get; set; }
         public Gender Gender { get; set; }
+        public short Height { get; set; }
+        public short Weight { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

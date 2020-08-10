@@ -107,3 +107,4 @@ C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.pdb
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic Website.csprojAssemblyReference.cache
 C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic_Website.Migrations.bloodTypegender.resources
+C:\Users\hp\source\repos\Clinic Website\Clinic Website\obj\Debug\Clinic_Website.Migrations.UserData.resources

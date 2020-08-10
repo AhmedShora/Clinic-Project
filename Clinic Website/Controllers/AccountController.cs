@@ -88,8 +88,10 @@ namespace Clinic_Website.Controllers
                 var user=db.Users.Find(UserID);
                 user.BloodType = editInfo.BloodType;
                 user.Gender = editInfo.Gender;
+                user.Weight = editInfo.Weight;
+                user.Height = editInfo.Height;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ProfileInformation", "Account");
             }
             return View(editInfo);
         }
