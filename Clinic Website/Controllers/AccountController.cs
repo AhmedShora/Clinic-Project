@@ -311,7 +311,7 @@ namespace Clinic_Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -320,10 +320,12 @@ namespace Clinic_Website.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password",  callbackUrl);
+             // await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
+
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -357,7 +359,7 @@ namespace Clinic_Website.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -512,25 +514,7 @@ namespace Clinic_Website.Controllers
             return View();
         }
 
-        //public ActionResult Info(int id)
-        //{
-        //    var clinic = DB.ApplyForClinics.Find(id);
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Info()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        clinic.ApplyDate = DateTime.Now;
-        //        DB.Entry(clinic).State = EntityState.Modified;
-        //        DB.SaveChanges();
-        //        return RedirectToAction("GetClinicsByUser");
-        //    }
-        //    return View(clinic);
-        //}
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)
