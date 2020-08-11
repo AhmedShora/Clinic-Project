@@ -7,6 +7,7 @@
             <th>Patient Name</th>
             <th>Message Content</th>
             <th>Sending Date</th>
+            <th>Patient Profile</th>
         </tr>
         @foreach (var item in gr.Items)
         {
@@ -14,6 +15,9 @@
             <td>@item.user.UserName</td>
             <td>@item.Message</td>
             <td>@item.ApplyDate</td>
+            <td>
+                @Html.ActionLink("Profile", "PatientProfileInformation", "Account",new { id = item.UserId }, new { @class = "btn btn-success" })
+            </td>
         </tr>
         }
     </table>

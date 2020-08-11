@@ -17,9 +17,6 @@ namespace Clinic_Website.Models
         public Gender Gender { get; set; }
         public short Height { get; set; }
         public short Weight { get; set; }
-
-
-
     }
     public class ExternalLoginListViewModel
     {
