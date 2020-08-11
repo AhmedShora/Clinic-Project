@@ -167,8 +167,7 @@ namespace Clinic_Website.Controllers
         }
 
         [Authorize]
-        //بترجع العياداتات اللي اليوزر المريض قدم فيها 
-
+        // return patient clinics
         public ActionResult GetClinicsByUser()
         {
             var UserId = User.Identity.GetUserId();
@@ -181,9 +180,10 @@ namespace Clinic_Website.Controllers
         [Authorize]
         public ActionResult GetDoctorsByAdmin()
         {
-            //   var AllDoctors = DB.Users;
+           // var AllDoctors = DB.Users.Where(aa=>aa.Roles);
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(DB));
             var role = roleManager.FindByName("Doctor").Users.First();
+
             var usersInRoleDoctor = DB.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
             return View(usersInRoleDoctor);
         }

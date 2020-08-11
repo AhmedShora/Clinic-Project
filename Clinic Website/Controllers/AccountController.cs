@@ -74,7 +74,7 @@ namespace Clinic_Website.Controllers
         [Authorize]
         public ActionResult PatientProfileInformation(string id)
         {
-         //   var UserID = User.Identity.GetUserId();
+            //   var UserID = User.Identity.GetUserId();
             var user = db.Users.Find(id);
             return View(user);
         }
@@ -82,17 +82,31 @@ namespace Clinic_Website.Controllers
         [Authorize]
         public ActionResult EditInfo()
         {
+
+            EditInfo editInfo = new EditInfo();
+            var UserID = User.Identity.GetUserId();
+            var user = db.Users.Find(UserID);
+            if (user.Height!=0) {
+                editInfo.BloodType = user.BloodType;
+                editInfo.Gender = user.Gender;
+                editInfo.Weight = user.Weight;
+                editInfo.Height = user.Height;
+                return View(editInfo);
+
+            }
+
             return View();
+
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult EditInfo( EditInfo editInfo)
+        public ActionResult EditInfo(EditInfo editInfo)
         {
-             if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var UserID = User.Identity.GetUserId();
-                var user=db.Users.Find(UserID);
+                var user = db.Users.Find(UserID);
                 user.BloodType = editInfo.BloodType;
                 user.Gender = editInfo.Gender;
                 user.Weight = editInfo.Weight;
@@ -329,8 +343,8 @@ namespace Clinic_Website.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password",  callbackUrl);
-             // await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", callbackUrl);
+                // await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
 
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
@@ -521,7 +535,7 @@ namespace Clinic_Website.Controllers
             return View();
         }
 
-       
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
